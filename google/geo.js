@@ -55,19 +55,16 @@ var yqlgeo = function(){
         if(window.console) {console.log(yql);}
         load(yql,'yqlgeo.retrieved'); 
     };
-
     function getFromUrl(url) {
         var yql = "select * from geo.places where woeid in (select match.place.woeId from geo.placemaker where documentURL='"+url+"' and documentType='text/html' and appid='')";                                                                    
         if(window.console) {console.log(yql);}
         load(yql,'yqlgeo.retrieved');
     };
-
     function getFromIP(ip) {
-        var yql = "select * from geo.places where woeid in (select place.woeid from flickr.places where (lat,lon) in (select Latitude,Longitude from ip.location where ip='"+ip+"'))";
+        var yql = "select * from geo.places where woeid in (select place.woeid from flickr.places where (lat,lon) in (select Latitude,Longitude from ip.location where ip='"+ip+"' and key='9fa9c90700b942bbbbbeb19decb33a591140386d2d407d335c46467703002e0b'))";
         if(window.console) {console.log(yql);}
         load(yql,'yqlgeo.retrieved');           
     };
-
     function retrieved(o){
         if(o.query.results) {
              callback(o.query.results);
